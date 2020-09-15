@@ -5,4 +5,5 @@ angular.module('alurapic').controller('FotosController', function($scope) {
 		url : 'http://www.fundosanimais.com/Minis/leoes.jpg'
 	};
 
+
 });
