@@ -1,0 +1,22 @@
+/*  Aplica a transformacao no painel quando ele esta saindo da tela
+	Essa classe somente aparece porque foi adicionado o ngAnimate no main.js
+	O ngANimete é que adiciona ou tira classes do angular
+*/
+.painel-animado.ng-leave-active {
+	-moz-transform: scale(0.1);
+	-webkit-transform: scale(0.1);
+	-ms-transform: scale(0.1);
+	-o-transform: scale(0.1);
+	transform: scale(0.1);
+}
+
+/*  Ativa a transição no elemento.
+	Agora, quando o transform for aplicado apenas para os elementos
+	que estão saindo da lista, a escala será animada! */
+.painel-animado {
+	-moz-transition:transform 0.8s;
+	-webkit-transition:transform 0.8s;
+	-ms-transition:transform 0.8s;
+	-o-transition:transform 0.8s;
+	transition:transform 0.8s;
+}
