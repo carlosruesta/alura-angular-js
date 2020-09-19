@@ -51,5 +51,16 @@ angular.module('minhasDiretivas', [])
 		 * ddo => directive definition object
 		 */
 		return ddo;
+	})
+
+	.directive('minhaFoto', function () {
+		return {
+			restrict: 'AE',
+			scope: {
+				titulo: '@titulo',
+				url: '@url',
+			},
+			templateUrl: 'js/directives/minha-foto.html'
+		};
 	});
 
