@@ -1,3 +1,15 @@
 <div class="jumbotron">
 	<h1 class="text-center">Alurapic</h1>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		<form>
+			<input ng-model="filtro" type="text" class="form-control" placeholder="filtrar" ng-model-options="{ debounce: 500 }">
+		</form>
+	</div>
+</div>
+<div class="row">
+	<meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter:{titulo:filtro}" titulo={{foto.titulo}}>
+		<img class="img-responsive center-block" src={{foto.url}} alt={{foto.titulo}}>
+	</meu-painel>
+</div>
