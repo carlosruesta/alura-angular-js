@@ -1,4 +1,4 @@
-angular.module('alurapic').controller('FotoController', function($scope, $routeParams, recursoFoto) {
+angular.module('alurapic').controller('FotoController', function($scope, $routeParams, recursoFoto, cadastroDeFotos) {
 
 	$scope.foto = {};
 	$scope.mensagem = '';
@@ -19,28 +19,18 @@ angular.module('alurapic').controller('FotoController', function($scope, $routeP
 		if (!$scope.formulario.$valid) {
 			return;
 		}
-		if (angular.isDefined($scope.foto._id)) {
-			recursoFoto.update({fotoId: $scope.foto._id}, $scope.foto,
-				function() {
-					$scope.mensagem = `Foto ${$scope.foto.titulo} alterada com sucesso`;
-					$scope.formulario.$setPristine();
-				},
-				function(erro) {
-					console.log(erro);
-					console.log('Não foi possível alterar a foto');
-					$scope.mensagem = 'Não foi possível cadastrar a foto';
-				});
-		} else {
-			recursoFoto.save($scope.foto,
-				function() {
-					$scope.foto = {};
-					$scope.mensagem = 'Foto cadastrada com sucesso';
-					$scope.formulario.$setPristine();
-				},
-				function(erro) {
-					console.log(erro);
-					console.log('Não foi possível cadastrar a foto');
-					$scope.mensagem = 'Não foi possível cadastrar a foto';
+		if ($scope.formulario.$valid) {
+			cadastroDeFotos.cadastrar($scope.foto)
+				.then(function(dados) {
+					$scope.mensagem = dados.mensagem;
+					if (dados.inclusao) {
+						$scope.foto = {};
+						$scope.formulario.$setPristine();
+					}
+					$scope.focado = true;
+				})
+				.catch(function(erro) {
+					$scope.mensagem = erro.mensagem;
 				});
 		}
 	};
